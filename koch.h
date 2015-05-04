@@ -9,6 +9,8 @@ class Line{
 	public:
 		Line();
 		~Line();
+		Line(size_t i_1, size_t j_1, size_t i_2, size_t j_2, int d);
+		void print();
 		size_t i1;
 		size_t j1;
 		size_t i2;
@@ -25,12 +27,15 @@ class Koch{
 		int l_max;        //maximum allowed l
 		int l;            //current l
 		double s;         //length of line
+		size_t s_index;   //length of line in indeces
 		double L;         //length of line at l=0
 		int m;            //
 		double delta_min; //minimum grid step
 		double delta;     //used grid step
 		double grid_max;
 
+		size_t lstp;
+		size_t stp;
 		size_t N;
 		size_t origin;
 		umat boundary;
@@ -40,6 +45,9 @@ class Koch{
 
 		void fill_x();
 		void initialize_line();
+		void test_lines();
 		size_t intpower(size_t base, size_t exponent);
+		void update_l();
+		void draw_lines();
 
 };
