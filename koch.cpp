@@ -33,12 +33,12 @@ void Line::print(){
 
 Koch::Koch(){
 	n = 4;
-	l_max = 4;
+	l_max = 7;
 	l = 0;
 	L = 1.0;
 	s = 1.0;
 	m = 1.0;
-	delta_min = pow(0.25,l_max);
+	delta_min = L*pow(0.25,l_max);
 	delta = delta_min;
 	grid_max = L/2.0;
 	for(int i = 1; i<(l_max+1);i++){
@@ -49,9 +49,9 @@ Koch::Koch(){
 	N = (size_t) N_double;
 	N = 2*N + 3;
 	origin = N/2; 
-	boundary = zeros<umat>(N,N);
-	interior = zeros<umat>(N,N);
-	grid = zeros<mat>(N,N);
+	//boundary = zeros<umat>(N,N);
+	//interior = zeros<umat>(N,N);
+	//grid = zeros<mat>(N,N);
 }
 
 Koch::~Koch(){}
@@ -75,6 +75,45 @@ size_t Koch::intpower(size_t base, size_t exponent){
 		out = out*base;
 	}
 	return out;
+}
+
+void Koch::plot_single_line_corners(size_t it){
+	vec u = zeros<vec>(2);
+	vec v = zeros<vec>(2);
+	size_t length = 2;
+	u(0) = x(lines[it].i1);
+	u(1) = x(lines[it].i2);
+	v(0) = x(lines[it].j1);
+	v(1) = x(lines[it].j2);
+	gplt.xystream(length,u,v);
+}
+
+void Koch::plot_lines(){
+	vector<double> u ; 
+	vector<double> v;
+	for(size_t it=0; it<n; it++){
+		u.push_back(x(lines[it].i1));
+		u.push_back(x(lines[it].i2));
+		v.push_back(x(lines[it].j1));
+		v.push_back(x(lines[it].j2));
+	}
+	gplt.xystream(u,v);
+}
+
+void Koch::plot_boundary(){
+	vec U = zeros<vec>(N);
+	vec V = zeros<vec>(N);
+	vector<double> u; 
+	vector<double> v;
+	for(size_t i=0; i<N; i++){
+		for(size_t j=0; j<N; j++){
+			if(boundary(i,j)==0){
+				u.push_back(x(i));
+				v.push_back(x(j));
+			}
+		}
+	}
+	gplt.xystream(u,v);
 }
 
 void Koch::initialize_line(){
@@ -124,7 +163,7 @@ void Koch::initialize_line(){
 	//line 4
 	Line line4;
 	line4.i1 = origin - longstep;
-	line4.i2 = line2.i1;
+	line4.i2 = line4.i1;
 	line4.j1 = origin - longstep;
 	line4.j2 = origin + longstep;
 	line4.dir = 4;
@@ -133,6 +172,7 @@ void Koch::initialize_line(){
 
 
 void Koch::draw_lines(){
+	cout << "entering draw_lines" << endl;
 	boundary = ones<umat>(N,N);
 	uvec ins_col = zeros<uvec>(s_index);
 	urowvec ins_row = zeros<urowvec>(s_index);
@@ -151,9 +191,8 @@ void Koch::draw_lines(){
 			boundary.row(lines[it].i1).subvec(lines[it].j1, lines[it].j2) = ins_row;
 		}
 	}
-	boundary(0,0) = 0;
-	boundary(0,N-1) = 0;
-	boundary.save("data/boundaryBigBig5.dat", raw_ascii);
+	//boundary.save("data/boundaryBigBig5.dat", raw_ascii);
+	cout << "leaving draw_lines" << endl;
 }
 
 

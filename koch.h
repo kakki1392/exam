@@ -1,6 +1,7 @@
 #include <armadillo>
 #include <cstdio>
 #include <vector>
+#include "gnuplotting.h"
 
 using namespace arma;
 using namespace std;
@@ -49,5 +50,9 @@ class Koch{
 		size_t intpower(size_t base, size_t exponent);
 		void update_l();
 		void draw_lines();
+		void plot_single_line_corners(size_t it);
+		void plot_lines();
+		void plot_boundary();
+		Gnuplotting gplt;
 
 };

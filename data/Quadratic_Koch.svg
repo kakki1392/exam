@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<svg 
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="800" height="600" viewBox="0 0 800 600">
+	<style type="text/css">
+		line {
+			stroke:black;
+			stroke-width:0.25;
+			stroke-linecap:round;
+		}
+	</style>
+	<!-- Koch curve -->
+	<defs>
+		<line id="level_0" x1="0" y1="0" x2="1" y2="0" />
+		<g id="level_1" transform="scale(0.25)">
+			<use xlink:href="#level_0" />
+			<use xlink:href="#level_0" transform="translate(1,0) rotate(-90)" />
+			<use xlink:href="#level_0" transform="translate(1,-1)" />
+			<use xlink:href="#level_0" transform="translate(2,-1) rotate(90)" />
+			<use xlink:href="#level_0" transform="translate(2,0) rotate(90)" />
+			<use xlink:href="#level_0" transform="translate(2,1)" />
+			<use xlink:href="#level_0" transform="translate(3,1) rotate(-90)" />
+			<use xlink:href="#level_0" transform="translate(3,0)" />
+		</g>
+		<g id="level_2" transform="scale(0.25)">
+			<use xlink:href="#level_1" />
+			<use xlink:href="#level_1" transform="translate(1,0) rotate(-90)" />
+			<use xlink:href="#level_1" transform="translate(1,-1)" />
+			<use xlink:href="#level_1" transform="translate(2,-1) rotate(90)" />
+			<use xlink:href="#level_1" transform="translate(2,0) rotate(90)" />
+			<use xlink:href="#level_1" transform="translate(2,1)" />
+			<use xlink:href="#level_1" transform="translate(3,1) rotate(-90)" />
+			<use xlink:href="#level_1" transform="translate(3,0)" />
+		</g>
+		<g id="level_3" transform="scale(0.25)">
+			<use xlink:href="#level_2" />
+			<use xlink:href="#level_2" transform="translate(1,0) rotate(-90)" />
+			<use xlink:href="#level_2" transform="translate(1,-1)" />
+			<use xlink:href="#level_2" transform="translate(2,-1) rotate(90)" />
+			<use xlink:href="#level_2" transform="translate(2,0) rotate(90)" />
+			<use xlink:href="#level_2" transform="translate(2,1)" />
+			<use xlink:href="#level_2" transform="translate(3,1) rotate(-90)" />
+			<use xlink:href="#level_2" transform="translate(3,0)" />
+		</g>
+		<g id="level_4" transform="scale(0.25)">
+			<use xlink:href="#level_3" />
+			<use xlink:href="#level_3" transform="translate(1,0) rotate(-90)" />
+			<use xlink:href="#level_3" transform="translate(1,-1)" />
+			<use xlink:href="#level_3" transform="translate(2,-1) rotate(90)" />
+			<use xlink:href="#level_3" transform="translate(2,0) rotate(90)" />
+			<use xlink:href="#level_3" transform="translate(2,1)" />
+			<use xlink:href="#level_3" transform="translate(3,1) rotate(-90)" />
+			<use xlink:href="#level_3" transform="translate(3,0)" />
+		</g>
+	</defs>
+	<use xlink:href="#level_4" transform="translate(0,300) scale(800)" class="bolder" />
+</svg>
